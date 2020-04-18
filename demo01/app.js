@@ -14,6 +14,9 @@ let sqlFind = "select * from user"
 let sqlInsert = "insert into user(username, account_number, password, sex) values (?, ?, ?, ?)"
 let value = ['李白', 1950863136, 111111, 1]
 
+// 端口号
+let portNumber = 4000
+
 
 // 创建数据库连接对象
 let db = mysql.createConnection(mysqlConfig)
@@ -33,6 +36,7 @@ db.query(sqlFind, [], (err, result) => {
     console.log('操作失败: ',err)
   } else {
     console.log('操作成功')
+    console.log('监听端口号:', `http://localhost:${portNumber}`)
     // 把查询的内容输出
     app.get('/', (req, res) => {
       res.send(result) //返回给浏览器一个json对象
@@ -44,4 +48,5 @@ db.query(sqlFind, [], (err, result) => {
 // 关闭数据库连接
 db.end()
 // 设置监听端口号, 开启服务
-app.listen(3000)
+app.listen(portNumber)
+
