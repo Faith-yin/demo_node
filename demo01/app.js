@@ -10,9 +10,7 @@ const mysqlConfig = require('./mysqlConfig.js')
 const app = express()
 
 // mysql语句
-let sqlFind = "select * from user"
-let sqlInsert = "insert into user(username, account_number, password, sex) values (?, ?, ?, ?)"
-let value = ['李白', 1950863136, 111111, 1]
+let sqlFind = "select * from t_user"
 
 // 端口号
 let portNumber = 4000
@@ -24,9 +22,9 @@ let db = mysql.createConnection(mysqlConfig)
 // 连接数据库
 db.connect(err => {
   if(err) {
-    console.log('连接失败：', err)
+    console.log('数据库连接失败')
   }else {
-    console.log('连接成功')
+    console.log('数据库连接成功')
   }
 })
 
